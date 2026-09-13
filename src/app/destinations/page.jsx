@@ -1,8 +1,10 @@
 import DestinationCard from "@/components/DestinationCard";
-import React from "react";
+import React, { cache } from "react";
 
 const DestinationPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`, {
+    cache: "no-store",
+  });
   const destinations = await res.json();
   console.log(destinations);
   return (

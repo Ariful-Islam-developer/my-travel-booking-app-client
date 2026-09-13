@@ -2,10 +2,11 @@
 
 import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 export function DeleteAlert({ destinations }) {
+  const router = useRouter;
   const { _id, destinationName } = destinations;
 
   const handleDelete = async () => {
@@ -22,8 +23,9 @@ export function DeleteAlert({ destinations }) {
       },
     );
     const data = await res.json();
-    redirect("/destinations");
     console.log(data);
+    router.push("/destinations");
+    router.refresh();
   };
   return (
     <AlertDialog>
